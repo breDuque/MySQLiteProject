@@ -57,7 +57,6 @@ class Banco:
 
 class Telas:
     import PySimpleGUI as sg
-    import pandas as pd
     def __init__(self):
         self.sg.theme('Reddit')
         self.banco = Banco()
@@ -110,14 +109,19 @@ class Telas:
                 self.TelaInsert()
 
             if event == 'DELETE':
-                x = values['-TABLE-'][0]
-                self.banco.DeleteTable(x)
+                try:
+                    x = values['-TABLE-'][0]
+                    self.banco.DeleteTable(x)
+                except:
+                    self.sg.popup_error('Please select something.')                
 
             if event == 'UPDATE':
-                x = values['-TABLE-'][0]
-                self.defaultValues = self.banco.SelectRow(x)
-                print(self.defaultValues)
-                self.TelaUpdate(x)  
+                try:
+                    x = values['-TABLE-'][0]
+                    self.defaultValues = self.banco.SelectRow(x)
+                    self.TelaUpdate(x)  
+                except:
+                    self.sg.popup_error('Please select something.')
 
             window['-TABLE-'].update(values=self.UpdateData())
             window.Refresh()
