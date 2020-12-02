@@ -66,7 +66,7 @@ class Telas:
         return self.banco.SelectTable()
 
     def TelaInicio(self):
-        headerList = ['ID','Album Name', 'Band Name', 'Album Date']
+        headerList = [' ID ','Album Name', 'Band Name', 'Album Date']
         empty_data=[['' for _ in range(len(headerList))]]
         data = self.UpdateData()
 
@@ -74,7 +74,7 @@ class Telas:
             [self.sg.Text('Please, select one option.')],
             [self.sg.Table(values=empty_data,
             headings=headerList,
-            max_col_width=25,
+            max_col_width=30,
             key='-TABLE-',
             auto_size_columns=True,
             justification='left',
@@ -85,7 +85,7 @@ class Telas:
             [self.sg.Text('Please, select one option.')],
             [self.sg.Table(values=data,
             headings=headerList,
-            max_col_width=25,
+            max_col_width=30,
             key='-TABLE-',
             auto_size_columns=True,
             justification='left',
